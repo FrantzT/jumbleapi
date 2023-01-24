@@ -6,8 +6,7 @@
 - Requirements
 - Installation
 - Configuration
-- Developers
-- Maintainers
+- Developer
 
 ## Introduction
 
@@ -78,7 +77,7 @@ Once installed clone the application files from the git repository
 and use helm to deploy it to the minikube cluster.
 
 ```
-git clone 
+git clone https://github.com/FrantzT/jumbleapi.git
 
 # minikube
 
@@ -99,7 +98,6 @@ helm install jumbleapi .
 # Verify instalation
 
 helm ls
-
 ```
 To verify successful installation test the endpoints with the following commands:
 
@@ -151,13 +149,13 @@ curl $MINIKUBE_SVC_URL/api/audit -H "Accept: application/json" | jq .
 
 ### Prerequisite 
 
-Development requires installation of packages ( paragraph Requirements of this document )
+Development requires installation of packages (paragraph Requirements of this document)
 as well as installation of applications required for the JumbleAPI server itself (previous paragraph).
 
-Once installed clone the application files from the git repository.
+Once the packages has been installed clone the application files from the git repository.
 
 ```
-git clone 
+git clone https://github.com/FrantzT/jumbleapi.git
 ```
 ### Development
 
@@ -195,7 +193,7 @@ app/
 
 app/main.py
 
-Main module of the application. Consisting core functions.
+Main module of the application containing core functions.
 
 app/audit_logger.py
 
@@ -214,15 +212,15 @@ helm/
 
 helm/templates/deployment.yaml
 
-Helm chart template conatining definitions of the deployment variables.
+Helm chart template containing definitions of the deployment variables.
 
 helm/templates/service.yaml
 
-Helm chart template conatining definitions of the service variables.
+Helm chart template containing definitions of the service variables.
 
 helm/values.yaml
 
-File consisting default values for the chart deployment.
+Default values for the chart deployment.
 ```
 
 ### Development instructions
@@ -239,9 +237,13 @@ cd jumbleapi/app
 # to instantly apply your code changes to the application
 
 uvicorn main:app --reload
+
+The server API document tools can be accessed in browse at the URL:
+
+http://127.0.0.1:8000/docs
+
+The endpoints will be available 
 ```
-
-
 After the code changes has been completed 
 create Docker image and push it to the docker repository.
 
