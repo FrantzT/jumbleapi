@@ -8,11 +8,14 @@ from fastapi.responses import FileResponse
 from http import HTTPStatus
 from starlette.background import BackgroundTask
 
+# location of the audit log
 logfile = "./app/log/audit.log"
 
 app = FastAPI()
 favicon_path = 'favicon.ico'
 
+# favicon path
+# added to keep the log output clean of errors
 @app.get('/favicon.ico', include_in_schema=False)
 async def favicon():
     return FileResponse(favicon_path)
@@ -21,6 +24,7 @@ formatter = CustomFormatter('%(asctime)s')
 logger = audit_logger.get_logger(__name__, formatter)
 status_reasons = {x.value:x.name for x in list(HTTPStatus)}
 
+# request function 
 def get_req(request: Request, response: Response):
     return {'req': {
         'url': request.url.path,
@@ -28,19 +32,23 @@ def get_req(request: Request, response: Response):
         },
         'res': {'statusCode': response.status_code, 'body': {'statusCode': response.status_code,
                    'status': status_reasons.get(response.status_code)}}}
-
+# log file function
 def write_log_data(request, response):
     logger.info(request.method + ' ' + request.url.path, extra={'extra_info': get_req(request, response)})
 
+# middleware for the audit_logger
 @app.middleware("http")
 async def log_request(request: Request, call_next):
     response = await call_next(request)
     response.background = BackgroundTask(write_log_data, request, response)
     return response
 
+# main API endpoint 
 @app.get("/api/jumble/")
 async def read_word(word: str | None = Query(default=None, min_length=2, regex="^[a-zA-Z]+$" )):
             # check if the sting is not composed of the same character
+            # in case of multiple characters application 
+            # falls into infinite loop
             def allCharactersSame(s) :
                 n = len(s)
                 for i in range(1, n) :
@@ -50,7 +58,7 @@ async def read_word(word: str | None = Query(default=None, min_length=2, regex="
 
             s = word
             if allCharactersSame(s) :
-                raise HTTPException(status_code=404, detail="Try a word insteed :)")
+                raise HTTPException(status_code=404, detail="Try a word insteed.")
                 return
             else :
                 while True:
@@ -61,7 +69,7 @@ async def read_word(word: str | None = Query(default=None, min_length=2, regex="
                         return {"jumbled_word": jumbled}
                     else:
                         continue
-
+# audit endpoint
 @app.get("/api/audit")
 def read_log(request: Request):
     n = 10
