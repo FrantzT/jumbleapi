@@ -290,9 +290,9 @@ It is set up this way just for the ease of test within local environment.
 ```
 ### helm chart values.yaml
 
-The ```minikube``` deployment as default value of the ```replicaCount: 2```.
+The ```minikube``` deployment has default value of the ```replicaCount: 2```.
 
-You can increase and decrease the value depending of your scalability needs.
+You can increase and decrease the value depending on your scalability needs.
 
 ```repository: pawelzaatdocker/jumble``` is hardcode value for the v1.0.1 of the application.
 
