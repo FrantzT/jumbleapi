@@ -254,12 +254,12 @@ docker push <repository>/<application_name>:<tag>
 ```
 Once the images has been created 
 and successfully delivered follow instructions from the paragraph
-Installation > Jumbled API server > Prerequisite 
+```Installation > Jumbled API server > Prerequisite``` 
 to test your changes.
 
 ## Configuration notes
 
-The configuration is a basic frame work and as such has simplified structure.
+The configuration is a basic framework and as such has simplified structure.
 There are some matters needed to be explained.
 
 ### File persistence.
