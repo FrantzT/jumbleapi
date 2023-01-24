@@ -149,10 +149,12 @@ curl $MINIKUBE_SVC_URL/api/audit -H "Accept: application/json" | jq .
 
 ### Prerequisite 
 
-Development requires installation of packages (paragraph Requirements of this document)
+Development requires installation of the packages (paragraph Requirements of this document)
 as well as installation of applications required for the JumbleAPI server itself (previous paragraph).
 
-Once the packages has been installed clone the application files from the git repository.
+Docker is an additional required package.
+
+Once the packages have been installed clone the application files from the git repository.
 
 ```
 git clone https://github.com/FrantzT/jumbleapi.git
@@ -205,7 +207,7 @@ Module containing functions responsible for formating the JSON output for the lo
 
 app/test_main.py
 
-Basic pytest module  
+Basic pytest module.  
 
 
 helm/
@@ -238,14 +240,14 @@ cd jumbleapi/app
 
 uvicorn main:app --reload
 
-The server API document tools can be accessed in the browse at the URL:
+The server API document tools (openapi) can be accessed in the browse at the URL:
 
 http://127.0.0.1:8000/docs
 
 ```
 After the code changes has been completed 
 create Docker image and push it to the docker repository.
-The Dockerfile file consists instructionsfor the docker image build.
+The Dockerfile file consists instructions for the docker image build.
 All aditional packages required durning development need to be added to
 the requirments.txt file or specifed in the Dockerfile itself.
 
@@ -256,7 +258,7 @@ docker tag jumbleapi <repository>/<application_name>:<tag>
 docker login # connect to the repository
 docker push <repository>/<application_name>:<tag>
 ```
-Once the images has been created 
+Once the images have been created 
 and successfully delivered follow instructions from the paragraph
 ```Installation > Jumbled API server > Prerequisite``` 
 to test your changes.
@@ -298,7 +300,7 @@ The ```minikube``` deployment has default value of the ```replicaCount: 2```.
 
 You can increase and decrease the value depending on your scalability needs.
 
-```repository: pawelzaatdocker/jumble``` is hardcode value for the v1.0.1 of the application.
+```repository: pawelzaatdocker/jumble``` is a hardcoded value for the v1.0.1 of the application.
 
 ## Developer
 
