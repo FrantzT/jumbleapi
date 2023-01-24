@@ -242,10 +242,12 @@ The server API document tools can be accessed in browse at the URL:
 
 http://127.0.0.1:8000/docs
 
-The endpoints will be available 
 ```
 After the code changes has been completed 
 create Docker image and push it to the docker repository.
+The Dockerfile file consists instructionsfor the docker image build.
+All aditional packages required durning development need to be added to
+the requirments.txt file or specifed in the Dockerfile itself.
 
 ```
 cd jumbleapi # location of the Dockerfile build instructions file
