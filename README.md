@@ -16,7 +16,7 @@ This is a demo deployment of an API server which is an implementation of a jumbl
 FastAPI Python's framework was used for the creation of the API server and it has been prepared to be deployed to ```minikube``` Kubernetes cluster by Helm chart.
 
 The API consist of two endpoints:
-- ```/api/jumble?word=\<word>```
+- ```/api/jumble?word=<word>```
 
 Query passed to the above endpoint (were the \<word> is the actual word to be jumbled) will result in a jumbled word.
 eg. ```/api/jumble?word=test``` will return JSON object: ```{"jumbled_word":"etst"}```
