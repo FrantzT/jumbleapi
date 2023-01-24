@@ -238,7 +238,7 @@ cd jumbleapi/app
 
 uvicorn main:app --reload
 
-The server API document tools can be accessed in browse at the URL:
+The server API document tools can be accessed in the browse at the URL:
 
 http://127.0.0.1:8000/docs
 
