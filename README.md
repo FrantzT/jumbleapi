@@ -316,7 +316,7 @@ The ```minikube``` deployment has default value of the ```replicaCount: 2```.
 
 You can increase and decrease the value depending on your scalability needs.
 
-```repository: pawelzaatdocker/jumble``` is a hardcoded value for the v1.0.1 of the application.
+```repository: pawelzaatdocker/jumbleapi``` is a hardcoded value for the v1.0.1 of the application.
 
 ## Developer
 
