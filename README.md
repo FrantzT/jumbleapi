@@ -285,8 +285,7 @@ There are some matters needed to be explained.
 
 The setup uses a file to collect logs for the audit. 
 The file itself is located in directory ```jumbleapi/log/audit.log```
-The ```minikube``` need to start with the mount option, so the directory 
-within your local environment will be used as a mount point for the cluster node
+The ```minikube``` providesw a mount point for the cluster node
 and allow pods to mount it as Directory and share the file access between them.
 The volume configuration is hardcoded within the file
 ```jumbleapi/helm/jumbleapi/templates/deployment.yaml```
