@@ -217,10 +217,6 @@ app/audit_logger_formatter.py
 
 Module containing functions responsible for formating the JSON output for the log objects.
 
-app/test_main.py
-
-Basic pytest module.  
-
 
 helm/
 
@@ -235,6 +231,7 @@ Helm chart template containing definitions of the service variables.
 helm/values.yaml
 
 Default values for the chart deployment.
+
 
 test/test_main.py
 
@@ -287,7 +284,7 @@ There are some matters needed to be explained.
 ### File persistence.
 
 The setup uses a file to collect logs for the audit. 
-The file itself is located in directory ```jumbleapi/app/log/audit.log```
+The file itself is located in directory ```jumbleapi/log/audit.log```
 The ```minikube``` need to start with the mount option, so the directory 
 within your local environment will be used as a mount point for the cluster node
 and allow pods to mount it as Directory and share the file access between them.
