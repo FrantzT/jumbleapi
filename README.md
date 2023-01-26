@@ -81,11 +81,7 @@ git clone https://github.com/FrantzT/jumbleapi.git
 
 # minikube
 
-minikube start mount /srv/data:/data
-
-# Note: the minikube requires mount command to create cluster Directory 
-# where audit.log file will be stored
-# you will find detailed explanation in the paragraph Development.
+minikube start 
 
 # Helm chart deployment
 
@@ -145,6 +141,19 @@ curl $MINIKUBE_SVC_URL/api/audit -H "Accept: application/json" | jq .
 ]
 ```
 
+### pytest
+
+```
+cd jumbleapi/test
+
+# execute
+
+pytest
+```
+pytest will run set of 4 tests checking the connectivity and server response.
+
+
+
 ### Development environment setup
 
 ### Prerequisite 
@@ -174,14 +183,10 @@ $ tree
 │   ├── audit_logger.py
 │   ├── audit_logger_formatter.py
 │   ├── favicon.ico
-│   ├── log
-│   │   └── audit.log
-│   ├── main.py
-│   └── test_main.py
+│   └── main.py
 ├── helm
 │   └── jumbleapi
 │       ├── Chart.yaml
-│       ├── charts
 │       ├── templates
 │       │   ├── NOTES.txt
 │       │   ├── _helpers.tpl
@@ -189,7 +194,14 @@ $ tree
 │       │   ├── service.yaml
 │       │   └── serviceaccount.yaml
 │       └── values.yaml
-└── requirements.txt
+├── log
+│   └── audit.log
+├── requirements.txt
+└── test
+    ├── __init__.py
+    ├── log
+    │   └── audit.log
+    └── test_main.py
 
 app/
 
@@ -223,6 +235,10 @@ Helm chart template containing definitions of the service variables.
 helm/values.yaml
 
 Default values for the chart deployment.
+
+test/test_main.py
+
+pytest test units
 ```
 
 ### Development instructions
@@ -233,12 +249,12 @@ You can start the local server locally
 and it will deliver your changes instantly to the endpoints.
 
 ```
-cd jumbleapi/app
+cd jumbleapi
 
 # run the uvicorn server in the --reload development mode 
 # to instantly apply your code changes to the application
 
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 
 The server API document tools (openapi) can be accessed in the browse at the URL:
 
@@ -285,7 +301,7 @@ It is set up this way just for the ease of test within local environment.
 [...]
          volumeMounts: 
             - name: audit-log
-              mountPath: /code/app/log
+              mountPath: /code/log
 [...]
       volumes:
         - name: audit-log

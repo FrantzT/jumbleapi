@@ -9,7 +9,7 @@ from http import HTTPStatus
 from starlette.background import BackgroundTask
 
 # location of the audit log
-logfile = "./app/log/audit.log"
+logfile = "./log/audit.log"
 
 app = FastAPI()
 favicon_path = 'favicon.ico'

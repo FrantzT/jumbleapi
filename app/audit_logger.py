@@ -13,7 +13,7 @@ def get_stream_handler(formatter):
     stream_handler.setFormatter(formatter)
     return stream_handler
 
-def get_logger(name, formatter, log_filename = "./app/log/audit.log"):
+def get_logger(name, formatter, log_filename = "./log/audit.log"):
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(get_file_handler(formatter, log_filename))
